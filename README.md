@@ -4,7 +4,7 @@
 <p align="center">
     <img src="images/methodology-fig-capstone.png" width="100%" height="200%"> <br>
  
-  <!-- *Overview of the methodology framework across four key stages for adapting MLLMs to resource-limited healthcare settings. Starting with the Optimization phase, the general- purpose TinyLLaVA model undergoes fine-tuning and quantization into variants TinyLLaVA-Med-F, FQ4, FQ8 while the quantization of LLaVA-Med leads to variants LLaVA-Med-Q4 and Q8. The Evaluation phase tests the models on benchmark datasets (VQA, SLAKE, PathVQA) and with GPT-4. In the Deployment stage, models are implemented on consumer devices to assess memory usage. Finally, the Integration into Hospital Systems stage explores their integration into healthcare systems for improved radiology services.* -->
+  <!-- *Overview of the methodology framework across four key stages for adapting MLLMs to resource-limited healthcare settings. Starting with the Optimization phase, the general-purpose TinyLLaVA model undergoes fine-tuning and quantization into variants TinyLLaVA-Med-F, FQ4, FQ8, while the quantization of LLaVA-Med leads to variants LLaVA-Med-Q4 and Q8. The Evaluation phase tests the models on benchmark datasets (VQA, SLAKE, PathVQA) and with GPT-4. In the Deployment stage, models are implemented on consumer devices to assess memory usage. Finally, the Integration into Hospital Systems stage explores their integration into healthcare systems for improved radiology services.* -->
 </p>
 
 ## News 
@@ -29,7 +29,7 @@ Medical Multimodal Large Language Models
 
 ## Abstract
 
-The critical shortage of medical professionals in low- resource countries, notably in Africa, hinders adequate health- care delivery. AI, particularly Multimodal Large Language Mod- els (MLLMs), can enhance the efficiency of healthcare systems by assisting in medical image analysis and diagnosis. However, the deployment of state-of-the-art MLLMs is limited in these regions due to the high computational demands that exceed the capabil- ities of consumer-grade GPUs. This paper presents a framework for optimizing MLLMs for resource-constrained environments. We introduce optimized medical MLLMs including TinyLLaVA- Med-F, a medical fine-tuned MLLM, and quantized variants (TinyLLaVA-Med-FQ4, TinyLLaVA-Med-FQ8, LLaVA-Med-Q4, and LLaVA-Med-Q8) that demonstrate substantial reductions in memory usage without significant loss in accuracy. Specifically, TinyLLaVA-Med-FQ4 achieves the greatest reductions, lowering dynamic memory by approximately 89% and static memory by 90% compared to LLaVA-Med. Similarly, LLaVA-Med-Q4 reduces dynamic memory by 65% and static memory by 67% compared to state-of-the-art LLaVA-Med. These memory reduc- tions make these models feasible for deployment on consumer- grade GPUs such as RTX 3050. This research underscores the potential for deploying optimized MLLMs in low-resource settings, providing a foundation for future developments in accessible AI-driven healthcare solutions.
+The critical shortage of medical professionals in low-resource countries, notably in Africa, hinders adequate health-care delivery. AI, particularly Multimodal Large Language Models (MLLMs), can enhance the efficiency of healthcare systems by assisting in medical image analysis and diagnosis. However, the deployment of state-of-the-art MLLMs is limited in these regions due to the high computational demands that exceed the capabilities of consumer-grade GPUs. This paper presents a framework for optimizing MLLMs for resource-constrained environments. We introduce optimized medical MLLMs, including TinyLLaVA- Med-F, a medical fine-tuned MLLM, and quantized variants (TinyLLaVA-Med-FQ4, TinyLLaVA-Med-FQ8, LLaVA-Med-Q4, and LLaVA-Med-Q8) that demonstrate substantial reductions in memory usage without significant loss in accuracy. Specifically, TinyLLaVA-Med-FQ4 achieves the greatest reductions, lowering dynamic memory by approximately 89% and static memory by 90% compared to LLaVA-Med. Similarly, LLaVA-Med-Q4 reduces dynamic memory by 65% and static memory by 67% compared to state-of-the-art LLaVA-Med. These memory reductions make these models feasible for deployment on consumer-grade GPUs such as RTX 3050. This research underscores the potential for deploying optimized MLLMs in low-resource settings, providing a foundation for future developments in accessible AI-driven healthcare solutions.
 
 ## Data Download 
 
@@ -64,7 +64,7 @@ The critical shortage of medical professionals in low- resource countries, notab
 
 
 
-To download our langauge-image multimodal instruction-folllowing dataset, please run the following script:
+To download our language-image multimodal instruction-following dataset, please run the following script:
 
 ```bash
 sh download_data.sh
@@ -72,7 +72,7 @@ sh download_data.sh
 
 ## Requirements and Installation
 
-We recommend the requirements as follows.
+To get started, please follow these installation instructions:
 
 1. Clone this repository and navigate to TinyLLaVA-Med-F folder
 
@@ -318,7 +318,7 @@ python tinyllava/serve/app.py --model-path TinyLLaVA-Med-F/TinyLLaVA-Med-F
 
 ### 1. Evaluation by Benchmark Datasets (SLAKE, VQA-RAD, PathVQA)
 
-Three Medical VQA datasets are considered in our experiments, including VQA-Rad, SLAKE, Pathology-VQA. We use VQA-Rad as the running example to illustrate how TinyLLaVA-Med-F is applied to a downstream scenario.
+Three Medical VQA datasets are considered in our experiments, including VQA-Rad, SLAKE, and Pathology-VQA. We use VQA-Rad as the running example to illustrate how TinyLLaVA-Med-F is applied to a downstream scenario.
 
 #### - Download Medical VQA Data
 
@@ -327,7 +327,7 @@ Three Medical VQA datasets are considered in our experiments, including VQA-Rad,
 3. Download Test.json for each VQA dataset from  [Google Drive](https://drive.google.com/file/d/1pyGsm8G0Gig63DAnOdLuUn3IyxrztWtR/view?usp=sharing).
 
 
-(a) Generate TinyLLaVA-Med responses on ScienceQA dataset
+(a) Generate TinyLLaVA-Med responses on the ScienceQA dataset
 
 ```Shell
 python tinyllava/eval/model_vqa_science.py \ 
@@ -348,7 +348,7 @@ python tinyllava/eval/run_eval.py \
 
 
 ### 2. Evaluation by GPT-4 
-In this evaluation, llava_med_eval_qa50_qa.jsonl contains the questions, context (captions and inline-mentions) and responses generated by text-only GPT-4, which we treat as ground truth.
+In this evaluation, llava_med_eval_qa50_qa.jsonl contains the questions, context (captions and inline-mentions), and responses generated by text-only GPT-4, which we treat as ground truth.
 
 (a) Generate Answer using TinyLLaVA-Med-F
 
@@ -399,10 +399,10 @@ python tinyllava/eval/model_vqa_hardware.py \
 
 Replace --load_4bit with --load_8bit to enable 8-bit quantization instead. If neither flag is provided, the model will run in full precision.
 
-The resulting answers-file will include each model prediction along with the corresponding metrics in the metadata field.
+The resulting answers file will include each model prediction along with the corresponding metrics in the metadata field.
 
 ## Acknowledgement
-Special thanks to the following for providing us with the codebase, base models, and dataset with the amazing multimodal and langauge capabilities: 
+Special thanks to the following for providing us with the codebase, base models, and dataset with the amazing multimodal and language capabilities: 
 - [LLaVA-Med](https://github.com/microsoft/LLaVA-Med) 
 - [TinyLLaVA_Factory](https://github.com/TinyLLaVA/TinyLLaVA_Factory)
 - [Med-MoE](https://github.com/jiangsongtao/Med-MoE)
